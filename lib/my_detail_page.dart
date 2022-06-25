@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_demo/content_page.dart';
+import 'package:getx_demo/detail_controller.dart';
 
 import 'content_page.dart';
 import 'my_home_page.dart';
@@ -36,6 +37,9 @@ class _DetailPageState extends State<DetailPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     int _currentIndex = 0;
+
+    final DetailContorller fav = Get.put(DetailContorller());
+
     return Scaffold(
       body: Container(
         color: Color(0xFFc5e5f3),
@@ -46,7 +50,7 @@ class _DetailPageState extends State<DetailPage> {
                 left: 10,
                 child: IconButton(
                   onPressed: () => Get.to(() => ContentPage()),
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: Icon(Icons.home),
                 )),
             Positioned(
               top: 120,
@@ -320,8 +324,11 @@ class _DetailPageState extends State<DetailPage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Color(0xFFfbc33e)),
-                        child:
-                            Icon(Icons.favorite_border, color: Colors.white)),
+                        child: IconButton(
+                          icon: Icon(Icons.favorite_border),
+                          onPressed: () => fav.favController(),
+                          color: Colors.white,
+                        )),
                     SizedBox(
                       width: 10,
                     ),
